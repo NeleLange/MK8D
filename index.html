@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Kart 8 Deluxe Zufallsgenerator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a202c; /* Equivalent to Tailwind's bg-gray-900 */
+        }
+        .item-card, .track-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+         .track-card:hover {
+            transform: translateX(5px);
+        }
+        .btn-glow-blue {
+            box-shadow: 0 0 5px #60a5fa, 0 0 10px #60a5fa;
+        }
+        .btn-glow-green {
+            box-shadow: 0 0 5px #4ade80, 0 0 10px #4ade80;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
+
+    <div class="container mx-auto max-w-4xl w-full">
+        <!-- Header -->
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-yellow-400 to-blue-500">
+                MK8 Deluxe Zufallsgenerator
+            </h1>
+            <p class="text-gray-300 mt-2 text-lg">Dein Helfer für zufällige Rennen und Item-Chaos!</p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <main class="grid md:grid-cols-2 gap-8">
+            <!-- Item Generator Section -->
+            <section id="item-generator" class="bg-gray-800 bg-opacity-70 backdrop-blur-sm p-6 rounded-2xl shadow-2xl border border-gray-700 flex flex-col">
+                <h2 class="text-2xl font-semibold mb-4 text-center text-blue-400">Zufällige Items</h2>
+                <p class="text-center text-gray-400 mb-6 flex-grow">Wie viele Items sollen erlaubt sein? Lass den Zufall entscheiden!</p>
+                <button id="generate-items" class="btn-glow-blue w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500">
+                    Items generieren!
+                </button>
+                <div id="item-results" class="mt-6 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4 min-h-[100px]">
+                    <!-- Item results will be injected here -->
+                </div>
+            </section>
+
+            <!-- Track Generator Section -->
+            <section id="track-generator" class="bg-gray-800 bg-opacity-70 backdrop-blur-sm p-6 rounded-2xl shadow-2xl border border-gray-700 flex flex-col">
+                <h2 class="text-2xl font-semibold mb-4 text-center text-green-400">Zufällige Strecken</h2>
+                <p class="text-center text-gray-400 mb-6 flex-grow">Wählt vier zufällige Strecken für euren eigenen Grand Prix!</p>
+                <button id="generate-tracks" class="btn-glow-green w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-500">
+                    4 Strecken generieren!
+                </button>
+                <div id="track-results" class="mt-6 space-y-3 min-h-[100px]">
+                    <!-- Track results will be injected here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // --- DATA ---
+
+        const items = [
+            { name: 'Banane', img: 'https://www.mariowiki.com/images/thumb/a/a2/MK8_Banana_Icon.png/48px-MK8_Banana_Icon.png' },
+            { name: 'Dreifach-Banane', img: 'https://www.mariowiki.com/images/thumb/2/23/MK8_Triple_Bananas_Icon.png/48px-MK8_Triple_Bananas_Icon.png' },
+            { name: 'Grüner Panzer', img: 'https://www.mariowiki.com/images/thumb/1/15/MK8_Green_Shell_Icon.png/48px-MK8_Green_Shell_Icon.png' },
+            { name: 'Dreifach-Grün', img: 'https://www.mariowiki.com/images/thumb/9/96/MK8_Triple_Green_Shells_Icon.png/48px-MK8_Triple_Green_Shells_Icon.png' },
+            { name: 'Roter Panzer', img: 'https://www.mariowiki.com/images/thumb/4/4c/MK8_Red_Shell_Icon.png/48px-MK8_Red_Shell_Icon.png' },
+            { name: 'Dreifach-Rot', img: 'https://www.mariowiki.com/images/thumb/c/c8/MK8_Triple_Red_Shells_Icon.png/48px-MK8_Triple_Red_Shells_Icon.png' },
+            { name: 'Stachi-Panzer', img: 'https://www.mariowiki.com/images/thumb/8/85/MK8_Spiny_Shell_Icon.png/48px-MK8_Spiny_Shell_Icon.png' },
+            { name: 'Bob-omb', img: 'https://www.mariowiki.com/images/thumb/9/99/MK8_Bob-omb_Icon.png/48px-MK8_Bob-omb_Icon.png' },
+            { name: 'Turbo-Pilz', img: 'https://www.mariowiki.com/images/thumb/3/33/MK8_Mushroom_Icon.png/48px-MK8_Mushroom_Icon.png' },
+            { name: 'Dreifach-Pilz', img: 'https://www.mariowiki.com/images/thumb/6/66/MK8_Triple_Mushrooms_Icon.png/48px-MK8_Triple_Mushrooms_Icon.png' },
+            { name: 'Gold-Pilz', img: 'https://www.mariowiki.com/images/thumb/e/e0/MK8_Golden_Mushroom_Icon.png/48px-MK8_Golden_Mushroom_Icon.png' },
+            { name: 'Kugelwilli', img: 'https://www.mariowiki.com/images/thumb/5/50/MK8_Bullet_Bill_Icon.png/48px-MK8_Bullet_Bill_Icon.png' },
+            { name: 'Blooper', img: 'https://www.mariowiki.com/images/thumb/1/17/MK8_Blooper_Icon.png/48px-MK8_Blooper_Icon.png' },
+            { name: 'Blitz', img: 'https://www.mariowiki.com/images/thumb/3/30/MK8_Lightning_Icon.png/48px-MK8_Lightning_Icon.png' },
+            { name: 'Superstern', img: 'https://www.mariowiki.com/images/thumb/f/f9/MK8_Star_Icon.png/48px-MK8_Star_Icon.png' },
+            { name: 'Piranha-Pflanze', img: 'https://www.mariowiki.com/images/thumb/a/a2/MK8_Piranha_Plant_Icon.png/48px-MK8_Piranha_Plant_Icon.png' },
+            { name: 'Superhupe', img: 'https://www.mariowiki.com/images/thumb/d/d9/MK8_Super_Horn_Icon.png/48px-MK8_Super_Horn_Icon.png' },
+            { name: 'Bumerang-Blume', img: 'https://www.mariowiki.com/images/thumb/2/23/MK8_Boomerang_Flower_Icon.png/48px-MK8_Boomerang_Flower_Icon.png' },
+            { name: 'Münze', img: 'https://www.mariowiki.com/images/thumb/f/fa/MK8_Coin_Icon.png/48px-MK8_Coin_Icon.png' },
+            { name: 'Wunderacht', img: 'https://www.mariowiki.com/images/thumb/d/d4/MK8_Crazy_8_Icon.png/48px-MK8_Crazy_8_Icon.png' },
+            { name: 'Feder', img: 'https://www.mariowiki.com/images/thumb/8/8c/MK8DX_Feather_Icon.png/48px-MK8DX_Feather_Icon.png' },
+            { name: 'Buh-Huu', img: 'https://www.mariowiki.com/images/thumb/1/19/MK8_Boo_Icon.png/48px-MK8_Boo_Icon.png' },
+        ];
+
+        const tracksByCup = {
+            "Pilz-Cup": ["Mario-Kart-Stadion", "Wasserpark", "Zuckersüßes Schlaraffenland", "Steinblock-Ruinen"],
+            "Blumen-Cup": ["Marios Piste", "Toads Hafenstadt", "Gruselwusel-Villa", "Shy-Guy-Wasserfälle"],
+            "Stern-Cup": ["Sonnenflughafen", "Delfin-Lagune", "Discodrom", "Wario-Abfahrt"],
+            "Spezial-Cup": ["Wolkenpiste", "Knochentrockene Wüste", "Bowsers Festung", "Regenbogen-Boulevard"],
+            "Panzer-Cup": ["Kuhmuh-Weide (Wii)", "Marios Piste (GBA)", "Cheep-Cheep-Strand (DS)", "Toads Autobahn (N64)"],
+            "Bananen-Cup": ["Staubtrockene Wüste (GCN)", "Donut-Ebene 3 (SNES)", "Königliche Rennpiste (N64)", "DK Dschungel (3DS)"],
+            "Blatt-Cup": ["Wario-Arena (DS)", "Sorbet-Land (GCN)", "Musikstrecke (3DS)", "Yoshi-Tal (N64)"],
+            "Blitz-Cup": ["Ticktack-Trauma (DS)", "Piranha-Pflanzen-Bucht (3DS)", "Grumbles Vulkangrube (Wii)", "Regenbogen-Boulevard (N64)"],
+            "Ei-Cup": ["Yoshi-Piste (GCN)", "Excitebike Arena", "Großstadtfieber", "Mute City"],
+            "Crossing-Cup": ["Baby Park (GCN)", "Käseland (GBA)", "Wilder Wipfelweg", "Animal Crossing"],
+            "Triforce-Cup": ["Warios Goldmine (Wii)", "Regenbogen-Boulevard (SNES)", "Eiscreme-Eskapade", "Hyrule-Piste"],
+            "Glocken-Cup": ["Neo-Bowser-City (3DS)", "Röhren-Rallye (GBA)", "Superglocken-U-Bahn", "Big Blue"],
+            "Gold-Turbo-Cup": ["Paris-Parcours (Tour)", "Toads Piste (3DS)", "Schoko-Sumpf (N64)", "Kokos-Promenade (Wii)"],
+            "Glückskatzen-Cup": ["Tokio-Tempotour (Tour)", "Pilz-Pass (DS)", "Wolken-Garten (GBA)", "Ninja-Dojo"],
+            "Rüben-Cup": ["New-York-Speedway (Tour)", "Marios Piste 3 (SNES)", "Kalimari-Wüste (N64)", "Waluigi-Flipper (DS)"],
+            "Propeller-Cup": ["Sydney-Spritztour (Tour)", "Schneeland (GBA)", "Pilz-Schlucht (Wii)", "Eis-Eis-Outpost"],
+            "Fels-Cup": ["London-Tour (Tour)", "Buu-Huu-Tal (GBA)", "Gebirgspfad (3DS)", "Blätterwald (Wii)"],
+            "Mond-Cup": ["Berlin-Abstecher (Tour)", "Peachs Schlossgarten (DS)", "Bergbescherung", "Regenbogen-Boulevard (3DS)"],
+            "Frucht-Cup": ["Amsterdam-Tour (Tour)", "Riverside Park (GBA)", "DK Skikane (Wii)", "Yoshis Eiland"],
+            "Bumerang-Cup": ["Bangkok-Abendrot (Tour)", "Marios Piste (DS)", "Waluigi-Arena (GCN)", "Singapur-Singel"],
+            "Feder-Cup": ["Athen-Aufruhr (Tour)", "Daisys Dampfer (GCN)", "Mondblick-Metropole (Wii)", "Bad-Parcours"],
+            "Doppelkirschen-Cup": ["Los-Angeles-Palmenpromenade (Tour)", "Sonnenuntergangs-Wüste (GBA)", "Koopa-Kap (Wii)", "Vancouver-Velotour (Tour)"],
+            "Eichel-Cup": ["Rom-Rambazamba (Tour)", "DK Bergland (GCN)", "Daisys Piste (Wii)", "Piranha-Pflanzen-Bucht"],
+            "Stachi-Cup": ["Madrid-Mobil (Tour)", "Rosalinas Eisplanet (3DS)", "Bowsers Festung 3 (SNES)", "Regenbogen-Boulevard (Wii)"]
+        };
+
+        const allTracks = Object.entries(tracksByCup).flatMap(([cup, trackList]) => 
+            trackList.map(track => ({ name: track, cup: cup }))
+        );
+
+        // --- ELEMENTS ---
+        const generateItemsBtn = document.getElementById('generate-items');
+        const generateTracksBtn = document.getElementById('generate-tracks');
+        const itemResultsContainer = document.getElementById('item-results');
+        const trackResultsContainer = document.getElementById('track-results');
+
+        // --- FUNCTIONS ---
+
+        // Function to shuffle an array
+        function shuffleArray(array) {
+            return array.sort(() => 0.5 - Math.random());
+        }
+
+        // Generate and display random items
+        function handleGenerateItems() {
+            itemResultsContainer.innerHTML = '';
+            
+            // Determine a random number of items to show, from 1 to all
+            const numToGenerate = Math.floor(Math.random() * items.length) + 1;
+            
+            const shuffledItems = shuffleArray([...items]);
+            const selectedItems = shuffledItems.slice(0, numToGenerate);
+
+            selectedItems.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'item-card flex flex-col items-center justify-center p-2 bg-gray-700 rounded-lg text-center';
+                
+                const itemImg = document.createElement('img');
+                itemImg.src = item.img;
+                itemImg.alt = item.name;
+                itemImg.className = 'w-12 h-12 object-contain';
+                itemImg.onerror = () => {
+                    itemImg.src = `https://placehold.co/48x48/4a5568/ffffff?text=?`;
+                    itemImg.alt = 'Bild nicht gefunden';
+                };
+
+                const itemName = document.createElement('p');
+                itemName.textContent = item.name;
+                itemName.className = 'text-xs mt-2 text-gray-300';
+                
+                itemDiv.appendChild(itemImg);
+                itemDiv.appendChild(itemName);
+                itemResultsContainer.appendChild(itemDiv);
+            });
+        }
+
+        // Generate and display 4 random tracks
+        function handleGenerateTracks() {
+            trackResultsContainer.innerHTML = '';
+
+            const shuffledTracks = shuffleArray([...allTracks]);
+            const selectedTracks = shuffledTracks.slice(0, 4);
+
+            selectedTracks.forEach((track, index) => {
+                const trackDiv = document.createElement('div');
+                trackDiv.className = 'track-card bg-gray-700 p-3 rounded-lg flex items-center space-x-4';
+                
+                const trackNumber = document.createElement('span');
+                trackNumber.textContent = `${index + 1}.`;
+                trackNumber.className = 'text-xl font-bold text-green-400';
+
+                const trackInfoDiv = document.createElement('div');
+                
+                const trackName = document.createElement('p');
+                trackName.textContent = track.name;
+                trackName.className = 'font-semibold text-white';
+
+                const cupName = document.createElement('p');
+                cupName.textContent = track.cup;
+                cupName.className = 'text-sm text-gray-400';
+
+                trackInfoDiv.appendChild(trackName);
+                trackInfoDiv.appendChild(cupName);
+                
+                trackDiv.appendChild(trackNumber);
+                trackDiv.appendChild(trackInfoDiv);
+                
+                trackResultsContainer.appendChild(trackDiv);
+            });
+        }
+
+        // --- EVENT LISTENERS ---
+        generateItemsBtn.addEventListener('click', handleGenerateItems);
+        generateTracksBtn.addEventListener('click', handleGenerateTracks);
+    </script>
+</body>
+</html>
+
+
