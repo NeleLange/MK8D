@@ -25,7 +25,7 @@
         }
         .btn-glow-blue { box-shadow: 0 0 5px #60a5fa, 0 0 10px #60a5fa; }
         .btn-glow-green { box-shadow: 0 0 5px #4ade80, 0 0 10px #4ade80; }
-        .btn-glow-purple { box-shadow: 0 0 5px #c084fc, 0 0 10px #c084fc; }
+        .btn-glow-red { box-shadow: 0 0 5px #c084fc, 0 0 10px #c084fc; }
         .btn-glow-yellow { box-shadow: 0 0 5px #facc15, 0 0 10px #facc15; }
     </style>
 </head>
@@ -71,7 +71,7 @@
             <section id="character-generator" class="bg-gray-800 bg-opacity-70 backdrop-blur-sm p-6 rounded-2xl shadow-2xl border border-gray-700 flex flex-col">
                 <h2 class="text-2xl font-semibold mb-4 text-center text-red-400">Zufällige Fahrer</h2>
                 <p class="text-center text-gray-400 mb-6 flex-grow">Wer soll das Rennen bestreiten? Wählt 4 zufällige Fahrer!</p>
-                <button id="generate-characters" class="mt-auto btn-glow-red w-full bg-purple-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-500">
+                <button id="generate-characters" class="mt-auto btn-glow-red w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-500">
                     4 Fahrer generieren!
                 </button>
                 <div id="character-results" class="mt-6 space-y-3 h-64 overflow-y-auto bg-gray-900 rounded-lg p-3">
@@ -211,7 +211,7 @@
             selectedCharacters.forEach((character, index) => {
                 const charDiv = document.createElement('div');
                 charDiv.className = 'char-card bg-gray-700 p-3 rounded-lg flex items-center space-x-4';
-                charDiv.innerHTML = `<span class="text-xl font-bold text-purple-400">${index + 1}.</span><p class="font-semibold text-white">${character}</p>`;
+                charDiv.innerHTML = `<span class="text-xl font-bold text-red-400">${index + 1}.</span><p class="font-semibold text-white">${character}</p>`;
                 characterResultsContainer.appendChild(charDiv);
             });
         }
