@@ -102,24 +102,49 @@
         // --- DATA ---
 
         const items = [
-            { name: 'Banane' }, { name: 'Dreifach-Banane' }, { name: 'Grüner Panzer' }, 
-            { name: 'Dreifach-Grün' }, { name: 'Roter Panzer' }, { name: 'Dreifach-Rot' },
-            { name: 'Stachi-Panzer' }, { name: 'Bob-omb' }, { name: 'Turbo-Pilz' },
-            { name: 'Dreifach-Pilz' }, { name: 'Gold-Pilz' }, { name: 'Kugelwilli' },
-            { name: 'Blooper' }, { name: 'Blitz' }, { name: 'Superstern' },
+            { name: 'Banane' }, { name: 'Drei Bananen' }, { name: 'Grüner Panzer' }, 
+            { name: 'Drei Grüne Panzer' }, { name: 'Roter Panzer' }, { name: 'Drei Rote Panzer' },
+            { name: 'Stachi-Panzer' }, { name: 'Bob-omb' }, { name: 'Feuerblume' },{ name: 'Pilz' },
+            { name: 'Drei Pilze' }, { name: 'Gold-Pilz' }, { name: 'Kugelwilli' },
+            { name: 'Blooper' }, { name: 'Blitz' }, { name: 'Stern' },
             { name: 'Piranha-Pflanze' }, { name: 'Superhupe' }, { name: 'Bumerang-Blume' },
-            { name: 'Münze' }, { name: 'Wunderacht' }, { name: 'Feder' }, { name: 'Buh-Huu' },
+            { name: 'Münze' }, { name: 'Wunderacht' }, { name: 'Buh-Huu' },
         ];
         
         const characters = [
-            'Mario', 'Luigi', 'Peach', 'Daisy', 'Rosalina', 'Tanooki-Mario', 'Katzen-Peach', 'Yoshi', 'Toad', 'Koopa', 'Shy Guy', 'Lakitu', 'Toadette', 'König Buu Huu', 'Baby Mario', 'Baby Luigi', 'Baby Peach', 'Baby Daisy', 'Baby Rosalina', 'Knochentrocken', 'Bowser', 'Donkey Kong', 'Wario', 'Waluigi', 'Iggy', 'Roy', 'Lemmy', 'Larry', 'Wendy', 'Ludwig', 'Morton', 'Inkling-Junge', 'Inkling-Mädchen', 'Link', 'Bewohner', 'Bewohnerin', 'Melinda', 'Metall-Mario', 'Rosa-Gold-Peach', 'Bowser Jr.', 'Birdo', 'Kamek', 'Funky Kong', 'Diddy Kong', 'Pauline', 'Peachette'
+            'Mario', 'Luigi', 'Peach', 'Daisy', 'Rosalina', 'Tanooki-Mario', 'Katzen-Peach', 'Yoshi', 'Toad', 'Koopa', 'Shy Guy', 'Lakitu', 'Toadette', 'König Buu Huu', 'Baby Mario', 'Baby Luigi', 'Baby Peach', 'Baby Daisy', 'Baby Rosalina', 'Knochentrocken', 'Bowser', 'Donkey Kong', 'Wario', 'Waluigi', 'Iggy', 'Roy', 'Lemmy', 'Larry', 'Wendy', 'Ludwig', 'Morton', 'Inkling', 'Link', 'Bewohner', 'Melinda', 'Metall-Mario', 'Rosa-Gold-Peach', 'Bowser Jr.', 'Birdo', 'Kamek', 'Funky Kong', 'Diddy Kong', 'Pauline', 'Peachette', 'Knochenbowser', 'Petey Piranha', 'Wiggler', 'Mii'
         ];
 
-        const karts = ['Standard-Kart', 'Bolide', 'Pistenstrolch', 'Renn-Gokart', 'U-Kart', 'Gold-Kart', 'Fflitzer', 'Biddybuggy', 'Mr. Scooty', 'Landship', 'Streetle', 'Standard-Bike', 'Mach-Bike', 'Sport-Bike', 'Jet-Bike', 'Roller-Bike', 'Teddy-Buggy', 'Katzen-Cabrio', 'Komet', 'Yoshi-Bike', 'Bär-Quad', 'Wiggler-Quad', 'Standard-Quad', 'Wüsten-Buggy', 'The Duke', 'Blue Falcon', 'City-Tripper', 'Master-Cycle', 'Tanuki-Buggy', 'Inkstriker', 'Koopa-Clown', 'Tatzmobil', 'P-Wing'];
-        const tires = ['Standard', 'Monster', 'Roller', 'Klein', 'Slick', 'Metall', 'Knopf', 'Offroad', 'Schwamm', 'Holz', 'Kissen', 'Retro', 'Gold-Reifen', 'GLA-Reifen', 'Blatt-Reifen'];
-        const gliders = ['Standard-Gleiter', 'Wolken-Ballons', 'Wario-Gleiter', 'Papierflieger', 'Blumen-Gleiter', 'Fallschirm', 'Paraglider', 'Gold-Gleiter', 'Hylia-Drachen', 'Blätter-Schirm', 'Segel-Gleiter'];
+        const karts = ['Standard-Kart', 'Turboflitzer', 'Katzen-Cabrio', 'Dreirad-Bolide', 'U-Kart', 'Rennwagen', 'Cool-Cabrio', 'Pünktchen-Kart', 'Kirmes-Droschke', 'PS-Galeere', 'Sportcoupé', 'Sauseschuh', 'GLA', 'W 25 Silberpfeil', 'Go-Kart', 'Blue Falcon', 'Bolide', 'Fichtenbock', 'Tanuki-Buggy', 'Clown-Kutsche', 'Flügel-Raser', 'Standard-Bike', 'Turbo-Bike', 'Renn-Bike', 'Flammen-Bike', 'Hyper-Bike', 'Jet-Bike', 'Cross-Bike', 'Yoshi-Bike', 'Roller', 'Eponator', 'Fashion-Scooter', 'Wilder Wiggler', 'Bärchen-Bolide', 'Knochenmühle', 'Standard-Quad', 'Splat-Quad', 'Inkstriker', '300 SL Roadster', 'Gold-Kart'];
+        const tires = ['Standard', 'Klein', 'Riesig', 'Metall', 'Slick', 'Rallye', 'Knopf', 'Holz', 'Schwamm', 'Kissen', 'Standard (blau)', 'Klein (blau)', 'Retro (rot)', 'Riesig (orange)', 'Slick (violett)', 'Rallye (weiß)', 'GLA', 'Blatt', 'Retro', 'Triforce', 'Gold-Reifen'];
+        const gliders = ['Sonnenschirm', 'Wario-Gleiter', 'Wolkenballons', 'Gleitschirm', 'Fallschirm', 'Feisthörnchen', 'Bowser-Gleiter', 'Segelflieger', 'Blumengleiter', 'MKTV-Gleiter', 'Hyrule-Gleiter', 'Papierflieger', 'Gold-Gleiter'];
 
-        const tracksByCup = { "Pilz-Cup": ["Mario-Kart-Stadion", "Wasserpark", "Zuckersüßes Schlaraffenland", "Steinblock-Ruinen"],"Blumen-Cup": ["Marios Piste", "Toads Hafenstadt", "Gruselwusel-Villa", "Shy-Guy-Wasserfälle"],"Stern-Cup": ["Sonnenflughafen", "Delfin-Lagune", "Discodrom", "Wario-Abfahrt"],"Spezial-Cup": ["Wolkenpiste", "Knochentrockene Wüste", "Bowsers Festung", "Regenbogen-Boulevard"],"Panzer-Cup": ["Kuhmuh-Weide (Wii)", "Marios Piste (GBA)", "Cheep-Cheep-Strand (DS)", "Toads Autobahn (N64)"],"Bananen-Cup": ["Staubtrockene Wüste (GCN)", "Donut-Ebene 3 (SNES)", "Königliche Rennpiste (N64)", "DK Dschungel (3DS)"],"Blatt-Cup": ["Wario-Arena (DS)", "Sorbet-Land (GCN)", "Musikstrecke (3DS)", "Yoshi-Tal (N64)"],"Blitz-Cup": ["Ticktack-Trauma (DS)", "Piranha-Pflanzen-Bucht (3DS)", "Grumbles Vulkangrube (Wii)", "Regenbogen-Boulevard (N64)"],"Ei-Cup": ["Yoshi-Piste (GCN)", "Excitebike Arena", "Großstadtfieber", "Mute City"],"Crossing-Cup": ["Baby Park (GCN)", "Käseland (GBA)", "Wilder Wipfelweg", "Animal Crossing"],"Triforce-Cup": ["Warios Goldmine (Wii)", "Regenbogen-Boulevard (SNES)", "Eiscreme-Eskapade", "Hyrule-Piste"],"Glocken-Cup": ["Neo-Bowser-City (3DS)", "Röhren-Rallye (GBA)", "Superglocken-U-Bahn", "Big Blue"],"Gold-Turbo-Cup": ["Paris-Parcours (Tour)", "Toads Piste (3DS)", "Schoko-Sumpf (N64)", "Kokos-Promenade (Wii)"],"Glückskatzen-Cup": ["Tokio-Tempotour (Tour)", "Pilz-Pass (DS)", "Wolken-Garten (GBA)", "Ninja-Dojo"],"Rüben-Cup": ["New-York-Speedway (Tour)", "Marios Piste 3 (SNES)", "Kalimari-Wüste (N64)", "Waluigi-Flipper (DS)"],"Propeller-Cup": ["Sydney-Spritztour (Tour)", "Schneeland (GBA)", "Pilz-Schlucht (Wii)", "Eis-Eis-Outpost"],"Fels-Cup": ["London-Tour (Tour)", "Buu-Huu-Tal (GBA)", "Gebirgspfad (3DS)", "Blätterwald (Wii)"],"Mond-Cup": ["Berlin-Abstecher (Tour)", "Peachs Schlossgarten (DS)", "Bergbescherung", "Regenbogen-Boulevard (3DS)"],"Frucht-Cup": ["Amsterdam-Tour (Tour)", "Riverside Park (GBA)", "DK Skikane (Wii)", "Yoshis Eiland"],"Bumerang-Cup": ["Bangkok-Abendrot (Tour)", "Marios Piste (DS)", "Waluigi-Arena (GCN)", "Singapur-Singel"],"Feder-Cup": ["Athen-Aufruhr (Tour)", "Daisys Dampfer (GCN)", "Mondblick-Metropole (Wii)", "Bad-Parcours"],"Doppelkirschen-Cup": ["Los-Angeles-Palmenpromenade (Tour)", "Sonnenuntergangs-Wüste (GBA)", "Koopa-Kap (Wii)", "Vancouver-Velotour (Tour)"],"Eichel-Cup": ["Rom-Rambazamba (Tour)", "DK Bergland (GCN)", "Daisys Piste (Wii)", "Piranha-Pflanzen-Bucht"],"Stachi-Cup": ["Madrid-Mobil (Tour)", "Rosalinas Eisplanet (3DS)", "Bowsers Festung 3 (SNES)", "Regenbogen-Boulevard (Wii)"]};
+        const tracksByCup = {
+            "Pilz-Cup": ["Mario-Kart-Stadion", "Wasserpark", "Zuckersüßer Canyon", "Steinblock-Ruinen"],
+            "Blumen-Cup": ["Marios Piste", "Toads Hafenstadt", "Gruselwusel-Villa", "Shy-Guy-Wasserfälle"],
+            "Stern-Cup": ["Sonnenflughafen", "Delfin-Lagune", "Discodrom", "Wario-Abfahrt"],
+            "Spezial-Cup": ["Wolkenstraße", "Knochentrockene Dünen", "Bowsers Festung", "Regenbogen-Boulevard"],
+            "Panzer-Cup": ["Kuhmuh-Weide (Wii)", "Marios Piste (GBA)", "Cheep-Cheep-Strand (DS)", "Toads Autobahn (N64)"],
+            "Bananen-Cup": ["Staubtrockene Wüste (GCN)", "Donut-Ebene 3 (SNES)", "Königliche Rennpiste (N64)", "DK Dschungel (3DS)"],
+            "Blatt-Cup": ["Wario-Arena (DS)", "Sorbet-Land (GCN)", "Instrumentalpiste (3DS)", "Yoshi-Tal (N64)"],
+            "Blitz-Cup": ["Ticktack-Trauma (DS)", "Röhrenraserei (3DS)", "Vulkangrollen (Wii)", "Regenbogen-Boulevard (N64)"],
+            "Ei-Cup": ["Yoshis Piste (GCN)", "Excitebike-Stadion", "Große Drachenmauer", "Mute City"],
+            "Crossing-Cup": ["Baby-Park (GCN)", "Käseland (GBA)", "Wilder Wipfelweg", "Animal Crossing"],
+            "Triforce-Cup": ["Warios Goldmine (Wii)", "Regenbogen-Boulevard (SNES)", "Polarkreis-Parcours", "Hyrule-Piste"],
+            "Glocken-Cup": ["Koopa-Großstadtfieber (3DS)", "Party-Straße (GBA)", "Marios Metro", "Big Blue"],
+            "Gold-Turbo-Cup": ["Paris-Parcours (Tour)", "Toads Piste (3DS)", "Schoko-Sumpf (N64)", "Kokos-Promenade (Wii)"],
+            "Glückskatzen-Cup": ["Tokio-Tempotour (Tour)", "Pilz-Pass (DS)", "Wolkenpiste (GBA)", "Ninja-Dojo"],
+            "Rüben-Cup": ["New-York-Speedway (Tour)", "Marios Piste 3 (SNES)", "Kalimari-Wüste (N64)", "Waluigi-Flipper (DS)"],
+            "Propeller-Cup": ["Sydney-Spritztour (Tour)", "Schneeland (GBA)", "Pilz-Schlucht (Wii)", "Eiscreme-Eskapade"],
+            "Fels-Cup": ["London-Tour (Tour)", "Buu-Huu-Tal (GBA)", "Gebirgspfad (3DS)", "Blätterwald (Wii)"],
+            "Mond-Cup": ["Pflaster von Berlin (Tour)", "Peachs Schlossgarten (DS)", "Bergbescherung (Tour)", "Regenbogen-Boulevard (3DS)"],
+            "Frucht-Cup": ["Ausfahrt Amsterdam (Tour)", "Flussufer-Park (GBA)", "DK Skikane (Wii)", "Yoshis Eiland"],
+            "Bumerang-Cup": ["Bangkok-Abendrot (Tour)", "Marios Piste (DS)", "Waluigi-Arena (GCN)", "Überholspur Singapur (Tour)"],
+            "Feder-Cup": ["Athen auf Abwegen (Tour)", "Daisys Dampfer (GCN)", "Mondblickstraße (Wii)", "Bad-Parcours"],
+            "Doppelkirschen-Cup": ["Los-Angeles-Strandpartie (Tour)", "Sonnenuntergangs-Wüste (GBA)", "Koopa-Kap (Wii)", "Vancouver-Wildpfad (Tour)"],
+            "Eichel-Cup": ["Rom auf Touren (Tour)", "DK Bergland (GCN)", "Daisys Piste (Wii)", "Piranha-Pflanzen-Bucht"],
+            "Stachi-Cup": ["Stadtrundfahrt Madrid (Tour)", "Rosalinas Eisplanet (3DS)", "Bowsers Festung 3 (SNES)", "Regenbogen-Boulevard (Wii)"]
+        };
         const allTracks = Object.entries(tracksByCup).flatMap(([cup, trackList]) => trackList.map(track => ({ name: track, cup: cup })));
 
         // --- ELEMENTS ---
@@ -137,9 +162,30 @@
         function shuffleArray(array) { return array.sort(() => 0.5 - Math.random()); }
         function getRandomElement(array) { return array[Math.floor(Math.random() * array.length)]; }
 
+        function getWeightedRandomItemCount() {
+            const weights = { high: 6, medium: 2, low: 1 };
+            const weightedCounts = [];
+
+            for (let i = 1; i <= items.length; i++) {
+                let weight = weights.low; // Standard-Gewichtung
+                if (i >= 4 && i <= 6) {
+                    weight = weights.high;
+                } else if ((i >= 1 && i <= 3) || (i >= 7 && i <= 10)) {
+                    weight = weights.medium;
+                }
+                
+                for (let j = 0; j < weight; j++) {
+                    weightedCounts.push(i);
+                }
+            }
+            
+            const randomIndex = Math.floor(Math.random() * weightedCounts.length);
+            return weightedCounts[randomIndex];
+        }
+
         function handleGenerateItems() {
             itemResultsContainer.innerHTML = '';
-            const numToGenerate = Math.floor(Math.random() * items.length) + 1;
+            const numToGenerate = getWeightedRandomItemCount();
             const selectedItems = shuffleArray([...items]).slice(0, numToGenerate);
             selectedItems.forEach(item => {
                 const itemTag = document.createElement('div');
